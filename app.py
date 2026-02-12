@@ -10,13 +10,12 @@ st.dataframe(car_data.head())
 
 hist_button = st.button("Construir histograma")
 if hist_button:
-    st.write("Creación de un histograma para conjunto de datos de anuncios de venta de coches")
+    st.write("Conjunto de datos de anuncios vs odómetro")
     fig=px.histogram(car_data, x="odometer")
     st.plotly_chart(fig, use_container_width=True)
 
 scatter_button = st.button("Construir gráfico de dispersión")
 if scatter_button:
-    st.write("Relación entre precio y odómetro")
     fig_scatter = px.scatter(
         car_data,
         x="odometer",
@@ -24,4 +23,15 @@ if scatter_button:
         title = "Relación entre precio y odómetro"
     )
     st.plotly_chart(fig_scatter, use_container_width=True)
+
+model_price_button = st.button("Histograma de precios por modelo")
+if model_price_button:
+    fig_model_price = px.histogram(
+        car_data,
+        x="model",
+        y="price",
+        title="Distribucion de precios por modelo",
+        histfunc="avg"
+    )
+    st.plotly_chart(fig_model_price, use_container_width=True)
     
